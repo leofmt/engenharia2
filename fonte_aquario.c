@@ -86,8 +86,13 @@ int main()
 		escolher_deposito:
 		printf ("Digite o numero da conta de destino: \n");
 		scanf("%d", &a);
+		valor_deposito:
 		printf ("Digite o valor a ser depositado.\n");
 		scanf("%f", &j);
+		if (j<=0) {
+			printf("Entre com um valor valido para deposito.\n");
+			goto valor_deposito;
+		}
 		for (c=0;c<4;c++) {
 			if ((pessoa[c].conta) != a) {
 				d++;
@@ -150,10 +155,11 @@ int main()
 	printf("Se deseja realizar outra operacao digite 1, caso contrario digite 2.\n");
 	scanf("%d",&n);
 	if(n==1){
-	  goto escolha_operacao;
+		system ("cls");
+		goto escolha_operacao;
 	}
 	else {
-    	return 0;
+    	system ("pause");
 	}
 }
 
@@ -172,13 +178,11 @@ int login (int x, int y) { //arrumar pro caso da pessoa acertar na 3ª tentativa
 		 a += (-1);
 		 return a;
 		}
-	
-	
 }
 
 void bloquear_cartao () { //arrumar
 	printf ("Sua conta foi bloqueada por exceder o limite de tentativas de login, favor entrar em contato com o banco.\n");
-	exit(0);
+	//sistem("pause");
 }
 
 int escolher_conta () {
@@ -209,7 +213,7 @@ int escolher_operacao () {
 		return x;
 	}
 	else{
-	  printf("opcao inalida, escolha novamente a operaca a ser realizada: \n");
+	  printf("Opcao invalida, escolha novamente a operaca a ser realizada: \n");
 	  goto novamente;
 	}
 }
@@ -249,7 +253,7 @@ int saque (int conta, float x) {  //funcionando
 		}
 		else {
 			pessoa[conta].saldoC -= x;
-			printf("%.2f\n", pessoa[conta].saldoC);
+			printf("Seu saldo atual e de %.2f\n", pessoa[conta].saldoC);
 			ex = fopen("ex.txt", "a");
 			if(ex == NULL){
        			printf("erro");
@@ -323,10 +327,10 @@ int transferencia (int origem, int destino, float x) {
 
 void extrato () {
 	char ler[1000];
-	printf("Saldo da conta corrente:");
+	printf("\nSaldo da conta corrente:");
 	printf("%.2f\n", pessoa[CONTA].saldoC);
-	printf("Saldo da conta poupanca:");
-	printf("%f.2\n", pessoa[CONTA].saldoP);
+	printf("\nSaldo da conta poupanca:");
+	printf("%.2f\n", pessoa[CONTA].saldoP);
 	 ex = fopen("ex.txt", "rt");
      if(ex == NULL){
      printf("erro");
