@@ -151,9 +151,23 @@ int main()
 	if(i==4) {
 		extrato ();
 	}
-	
+	escolher_tarefa:
 	printf("Se deseja realizar outra operacao digite 1, caso contrario digite 2.\n");
 	scanf("%d",&n);
+
+	if(n==1 || n==2) {
+		if(n==1){
+	 	 goto escolha_operacao;
+		}
+		if(n==2) {
+			return 0;
+		}
+	}
+	else {
+		printf("Opcao invalida, digite novamente.\n\n");
+    	goto escolher_tarefa;
+    }
+
 	if(n==1){
 		system ("cls");
 		goto escolha_operacao;
@@ -253,7 +267,11 @@ int saque (int conta, float x) {  //funcionando
 		}
 		else {
 			pessoa[conta].saldoC -= x;
+
+			printf("Saque na conta corrente no valor de: %.2f\n", pessoa[conta].saldoC);
+
 			printf("Seu saldo atual e de %.2f\n", pessoa[conta].saldoC);
+
 			ex = fopen("ex.txt", "a");
 			if(ex == NULL){
        			printf("erro");
